@@ -15,11 +15,18 @@ class HomeView extends Component {
     render() {
         const defaultProps = {
             center: {
-              lat: 59.95,
-              lng: 30.33
+              lat: 39.95,
+              lng: -77.33
             },
-            zoom: 11
+            zoom: 4
           };
+
+        const bonaire = {
+            center: {
+                lat: 12.2,
+                lng: -68.2
+              },
+        }
       return (
         <div>
             <header> Where did I go? 
