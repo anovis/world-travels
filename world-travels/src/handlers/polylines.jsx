@@ -1,21 +1,24 @@
 function handlePolylines(map,maps) {
-    var p1 = { "lat": 38, "lng": -77 }
-    var p2 = { "lat": 12, "lng": -68 }
-    var flightPath = new maps.Polyline({
-        path: [p1,p2 ],
-        geodesic: true,
-        strokeColor: '#33BD4E',
-        strokeOpacity: 1,
-        strokeWeight: 5
-    });
+    // var p1 = { "lat": 38, "lng": -77 }
+    // var p2 = { "lat": 12, "lng": -68 }
+    // var flightPath = new maps.Polyline({
+    //     path: [p1,p2 ],
+    //     geodesic: true,
+    //     strokeColor: '#33BD4E',
+    //     strokeOpacity: 1,
+    //     strokeWeight: 5
+    // });
 
-    flightPath.setMap(map);
+    // flightPath.setMap(map);
     // var myPosition = new maps.LatLng(46.0, -125.9);
+
+    var p1 = new maps.LatLng(38,-77);
+    var p2 = new maps.LatLng(12.2,-68.2);
 
     var lineLength = maps.geometry.spherical.computeDistanceBetween(p1, p2);
     var lineHeading = maps.geometry.spherical.computeHeading(p1, p2);
-    var offset1 = maps.geometry.spherical.computeOffset(p1, lineLength / 3, lineHeading - 60)
-    var offset2 = maps.geometry.spherical.computeOffset(p2, lineLength / 3, -lineHeading + 120)
+    var offset1 = maps.geometry.spherical.computeOffset(p1, lineLength / 4, lineHeading - 60)
+    var offset2 = maps.geometry.spherical.computeOffset(p2, lineLength / 4, -lineHeading + 60)
 
 
     var GmapsCubicBezier = function (latlong1, latlong2, latlong3, latlong4, resolution, map) {
@@ -30,7 +33,7 @@ function handlePolylines(map,maps) {
     
         var points = [];
     
-        for (it = 0; it <= 1; it += resolution) {
+        for (var it = 0; it <= 1; it += resolution) {
             points.push(this.getBezier({
                 x: lat1,
                 y: long1
@@ -71,10 +74,9 @@ function handlePolylines(map,maps) {
     
         return Line;
     };
-    
-    
+
     GmapsCubicBezier.prototype = {
-    
+        
         B1: function (t) {
             return t * t * t;
         },
@@ -94,9 +96,11 @@ function handlePolylines(map,maps) {
             return pos;
         }
     };
-
-    var curvedLine = new GmapsCubicBezier(p1, offset1, p2, offset2, 0.01, map);
+    
+    var curvedLine = new GmapsCubicBezier(p1, offset1, p2, offset2, .01, map);
 
 }
 
 export default handlePolylines;
+
+
