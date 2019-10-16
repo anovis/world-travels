@@ -1,3 +1,7 @@
+const planePath = `M 497.535,14.465c-19.569-19.568-51.395-19.241-70.557,0.726L322.092,124.488L66.131,39.781L12.4,93.513l213.352,131.365
+L117.796,337.372l-69.231-11.366L0,374.571l101.78,35.649L137.429,512l48.565-48.565l-11.366-69.231l112.494-107.955
+L418.487,499.6l53.732-53.732l-84.706-255.961L496.808,85.022C516.776,65.86,517.103,34.034,497.535,14.465z`
+
 function handlePolylines(map,maps) {
     // var p1 = { "lat": 38, "lng": -77 }
     // var p2 = { "lat": 12, "lng": -68 }
@@ -58,7 +62,8 @@ function handlePolylines(map,maps) {
                 path: path,
                 geodesic: true,
                 strokeOpacity: 0.0,
-                            icons: [{
+                            icons: [
+                                {
                                 icon: {
                                     path: 'M 0,-1 0,1',
                                     strokeOpacity: 1,
@@ -66,7 +71,19 @@ function handlePolylines(map,maps) {
                                 },
                                 offset: '0',
                                 repeat: '20px'
-                            }],
+                            },
+                            {
+                                  icon: {
+                                      path: planePath,
+                                      scale: '.1',
+                                      strokeColor:"#0033CC",
+                                      strokeWeight:3,
+                                      strokeOpacity:1,
+                                      rotation:315,
+                                      anchor:new maps.Point(100, 520)
+                                  },
+                                  offset: (0) + '%'
+                                }],
                  strokeColor: 'grey'
              });
     
@@ -98,7 +115,7 @@ function handlePolylines(map,maps) {
     };
     
     var curvedLine = new GmapsCubicBezier(p1, offset1, p2, offset2, .01, map);
-
+    return curvedLine
 }
 
 export default handlePolylines;
