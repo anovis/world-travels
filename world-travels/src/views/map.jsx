@@ -15,7 +15,7 @@ class SimpleMap extends Component {
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
                     yesIWantToUseGoogleMapApiInternals
-                    onGoogleApiLoaded={({map, maps}) => handleApiLoaded(map, maps)}
+                    onGoogleApiLoaded={({map, maps}) => handleApiLoaded(map, maps, this.props.data)}
                 >
                 </GoogleMapReact>
             </div>

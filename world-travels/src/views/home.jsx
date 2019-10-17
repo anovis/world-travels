@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SimpleMap from "./map";
 import injectSheet from 'react-jss'
+import demoData from '../data'
 
 const styles ={
     map: {
@@ -20,19 +21,13 @@ class HomeView extends Component {
             },
             zoom: 4
           };
-
-        const bonaire = {
-            center: {
-                lat: 12.2,
-                lng: -68.2
-              },
-        }
+          
       return (
         <div>
             <header> Where did I go? 
             </header>
             <div className={this.props.classes.map}>
-                <SimpleMap {...defaultProps} />
+                <SimpleMap data={demoData} {...defaultProps} />
             </div>
         </div>
       );

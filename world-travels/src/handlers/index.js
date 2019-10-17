@@ -1,9 +1,11 @@
 import handlePolylines from './polylines'
-import animateLine from './animatedIcon'
-
-const handleApiLoaded = (map, maps) => {
-    var line = handlePolylines(map,maps)
-    animateLine(line)
+import { handleAnimation } from './animatedIconControler'
+const handleApiLoaded = (map, maps, data) => {
+    var lines = handlePolylines(map, maps, data)
+    handleAnimation(map,maps,lines)
   };
 
+
+
+  
 export default handleApiLoaded
